@@ -1,6 +1,6 @@
 <?php
 
-require_once 'klasser/Sql.php';
+require_once __DIR__ . '/../klasser/Sql.php';
   $conn = Sql::connect();
 
 // SQL-förfrågan att skapa en tabell
@@ -17,8 +17,7 @@ $query = "CREATE TABLE IF NOT EXISTS users (
 )";
 
 $postquery = "CREATE TABLE IF NOT EXISTS posts (
-    post_id 
-    ,
+    post_id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT,
     description TEXT,
     image TEXT,

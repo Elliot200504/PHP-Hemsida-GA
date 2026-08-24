@@ -3,7 +3,7 @@ require_once 'Sql.php';
 class Post{ 
 
    public static function deletePost($user_id, $post_id) {
-    if($_SESSION['logged_in']== true){
+    if(!empty($_SESSION['logged_in'])){
       $conn = Sql::connect();
       
       $deleteQuery = "DELETE FROM posts WHERE post_id = '$post_id'";
@@ -13,12 +13,12 @@ class Post{
        header("Location: /viewProfile/$user_id");  
 
      }
-      else if(!$_SESSION['logged_in']){
+      else if(empty($_SESSION['logged_in'])){
         echo "<h1 class='ERROR'>Du behöver logga in</h1>";
          echo "<a class='ERROR' href='/Login'>Logga in</a>";
       }
 
-      else if($_SESSION['user_id']!=$user_id){
+      else if(($_SESSION['user_id'] ?? null) != $user_id){
 
       echo "<h1>Not your profile</h1>";
       echo "<a href='/Logout'>Logga ut om det behövs</a>";
@@ -60,7 +60,7 @@ class Post{
      $id= null;
     
      
-      if ($_SESSION["user_id"]) {
+      if (!empty($_SESSION["user_id"])) {
           $id = $_SESSION["user_id"];
       } else {
           $id = "0";
@@ -79,7 +79,7 @@ public static function createComment($post_id, $comment,$id){
 /*   debug($post_id);
   debug($comment); */
   
-  if($_SESSION['logged_in']==true){
+  if(!empty($_SESSION['logged_in'])){
 
   $allPosts = self::getLatestPosts(-1);
     //debug($allPosts);
@@ -153,7 +153,7 @@ $post="";
   
   
 public static function createPost($id, $title, $description, $post_picture) {
-   if($_SESSION['logged_in']== true && $_SESSION['user_id']==$id){
+   if(!empty($_SESSION['logged_in']) && ($_SESSION['user_id'] ?? null) == $id){
 $conn = Sql::connect();
 
 
@@ -181,12 +181,12 @@ $result = $stmt->execute();
 
      
    }
-  else if(!$_SESSION['logged_in']){
+  else if(empty($_SESSION['logged_in'])){
       echo "<h1 class='ERROR'>Du behöver logga in</h1>";
        echo "<a class='ERROR' href='/Login'>Logga in</a>";
     }
 
-    else if($_SESSION['user_id']!=$id){
+    else if(($_SESSION['user_id'] ?? null) != $id){
 
     echo "<h1>Not your profile</h1>";
     echo "<a href='/Logout'>Logga ut om det behövs</a>";

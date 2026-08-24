@@ -2,14 +2,14 @@
 session_start();
 
 // Inkluderar filer som skapar tabellen och lägger till data
-require_once 'klasser/Sql.php';
-require_once 'users/user_tabell.php';
-require_once 'klasser/Post.php';
-require_once 'klasser/Render.php';
-require_once 'klasser/Auth.php';
-require_once 'klasser/User.php';
-require_once 'router.php';
-require_once 'action/debug.php';
+require_once __DIR__ . '/klasser/Sql.php';
+require_once __DIR__ . '/users/user_tabell.php';
+require_once __DIR__ . '/klasser/Post.php';
+require_once __DIR__ . '/klasser/Render.php';
+require_once __DIR__ . '/klasser/Auth.php';
+require_once __DIR__ . '/klasser/User.php';
+require_once __DIR__ . '/router.php';
+require_once __DIR__ . '/action/debug.php';
 
 
 post('/Login', "Auth::Login");

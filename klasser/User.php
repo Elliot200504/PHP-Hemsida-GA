@@ -6,7 +6,7 @@ class User{
     $conn = Sql::connect();
 
 
-    if($_SESSION['logged_in']== true && $_SESSION['user_id']==$id){
+    if(!empty($_SESSION['logged_in']) && ($_SESSION['user_id'] ?? null) == $id){
       $conn = Sql::connect();
       // SQL-förfrågan för att ta bort en användare med en specifik ID
       $deleteQuery = "DELETE FROM users WHERE id = $id";
@@ -18,12 +18,12 @@ class User{
       session_destroy();
       header("Location: /Users");
     }
-    else if(!$_SESSION['logged_in']){
+    else if(empty($_SESSION['logged_in'])){
       echo "<h1 class='ERROR'>Du behöver logga in</h1>";
        echo "<a class='ERROR' href='/Login'>Logga in</a>";
     }
   
-    else if($_SESSION['user_id']!=$id){
+    else if(($_SESSION['user_id'] ?? null) != $id){
 
     echo "<h1>Inte din profil</h1>";
     echo "<a href='/Logout'>Logga ut om det behövs</a>";
@@ -73,7 +73,7 @@ public static function show($id){
   
   public static function editProfilePicture($id, $url) {
 
-    if($_SESSION['logged_in'] == true && $_SESSION['user_id']==$id){
+    if(!empty($_SESSION['logged_in']) && ($_SESSION['user_id'] ?? null) == $id){
         $conn = Sql::connect();
 
         $query = "UPDATE users SET user_picture = '$url' WHERE id = $id";
@@ -82,11 +82,11 @@ public static function show($id){
         header("Location: /viewProfile/$id");  
     
     }
-      else if(!$_SESSION['logged_in']){
+      else if(empty($_SESSION['logged_in'])){
         echo "<h1>Du behöver logga in</h1>";
         echo "<a href='/Login'>Logga in</a>";
       }
-  else if($_SESSION['user_id']!=$id){
+  else if(($_SESSION['user_id'] ?? null) != $id){
 
     echo "<h1>Inte din profil</h1>";
     echo "<a href='/Logout'>Logga ut om du vill</a>";

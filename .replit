@@ -1,4 +1,4 @@
-run = "php -S 0.0.0.0:8000 -t ."
+run = "php -S 0.0.0.0:8000 -t . server.php"
 
 entrypoint = "index.php"
 
@@ -6,7 +6,7 @@ entrypoint = "index.php"
 channel = "stable-22_11"
 
 [deployment]
-run = ["php", "-S", "0.0.0.0:8000", "-t", "."]
+run = ["php", "-S", "0.0.0.0:8000", "-t", ".", "server.php"]
 deploymentTarget = "cloudrun"
 
 [[ports]]

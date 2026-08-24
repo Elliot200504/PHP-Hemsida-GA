@@ -305,7 +305,7 @@
       <div class="Account">
         <?php 
          if(isset($_SESSION["logged_in"]) && $_SESSION["user_id"]==$id){
-       echo "<a class='delete' href='/deleteUser/{$row['id']}'>Delete Profile</a>";
+       echo "<a class='delete' href='/deleteUser/{$user['id']}'>Delete Profile</a>";
          } ?> 
           <div class="pfp"> 
               <?php

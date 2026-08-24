@@ -3,7 +3,7 @@
 
 class Sql{
   
-  public static $databaseFile = 'SQL/databas.db';
+  public static $databaseFile = __DIR__ . '/../SQL/databas.db';
   
   public static function connect(){
     
